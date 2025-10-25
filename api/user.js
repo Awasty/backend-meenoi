@@ -297,14 +297,31 @@ router.get("/shipment-list/:uid", async (req, res) => {
     const senderData = senderResults.length > 0 ? senderResults : null;
     const receiverData = receiverResults.length > 0 ? receiverResults : null;
 
-    return res.status(200).json({
+    const responsePayload = {
       status: true,
       message: "ข้อมูลถูกดึงสำเร็จ",
       data: {
         sender: senderData,
         receiver: receiverData,
       },
-    });
+    };
+
+    // 2. Log ตัวแปรนั้นออกมาดู (ใช้ JSON.stringify ให้อ่านง่าย)
+    console.log(`[Response Payload for UID: ${uid}]`);
+    console.log(JSON.stringify(responsePayload, null, 2));
+    // -------------------------
+
+    // 3. ส่ง Object นั้นกลับไป
+    return res.status(200).json(responsePayload);
+
+    // return res.status(200).json({
+    //   status: true,
+    //   message: "ข้อมูลถูกดึงสำเร็จ",
+    //   data: {
+    //     sender: senderData,
+    //     receiver: receiverData,
+    //   },
+    // });
   } catch (err) {
     console.error("Error fetching shipment data:", err);
     return res.status(500).json({
