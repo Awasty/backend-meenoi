@@ -55,7 +55,7 @@ router.post("/register", async (req, res) => {
       const hash = await bcrypt.hash(password, SALT_ROUNDS);
 
       // บันทึก (ค่าเริ่มต้นบางตัว)
-      const is_available = 1; // ออนไลน์พร้อมรับงานเริ่มต้น (ปรับตามนโยบายได้)
+      const is_available = 0; // ออนไลน์พร้อมรับงานเริ่มต้น (ปรับตามนโยบายได้)
       const latitude = null;
       const longitude = null;
       const last_seen = nowUtc();
